@@ -8,16 +8,28 @@ const Header = (props) => {
 
 
 const Content = (props) => {
+
+  let nameArr = [];
+  let exArr = [];
+
+  props.parts.forEach(obj => {
+
+    nameArr.push(obj.name);
+    exArr.push(obj.exercises);
+
+  });
+
   return (
     <>
-      <Part partName = {props.part1Name} partExercises = {props.part1Exercises}/>
-      <Part partName = {props.part2Name} partExercises = {props.part2Exercises}/>
-      <Part partName = {props.part3Name} partExercises = {props.part3Exercises}/>
+      <Part partName = {nameArr[0]} partExercises = {exArr[0]}/>
+      <Part partName = {nameArr[1]} partExercises = {exArr[1]}/>
+      <Part partName = {nameArr[2]} partExercises = {exArr[2]}/>
     </>
   );
 };
 
 const Part = (props) => {
+
   return (
     <>
       <p><b>{props.partName}</b> | <i>Total Exercises: {props.partExercises}</i></p>
@@ -30,8 +42,10 @@ const Total = (props) => {
 
   let sum = 0;
 
-  for (let i = 0; i < props.exercises.length; i++) {
-    sum += props.exercises[i];
+  console.log(props);
+
+  for (let i = 0; i < props.parts.length; i++) {
+    sum += props.parts[i].exercises;
   };
 
   console.log(sum);
