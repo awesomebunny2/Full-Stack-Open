@@ -76,7 +76,7 @@ const App = () => {
         exercises: 14
       }
     ]
-  }
+  };
 
 
 
