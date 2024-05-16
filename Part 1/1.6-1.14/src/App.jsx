@@ -29,19 +29,25 @@ const Stats = ({ good, neutral, bad }) => {
     const average = <><b>Average:</b> {(good + -Math.abs(bad))/(good + neutral + bad)}<br/><br/></>
     const positivePercent = <><b>% of Positive Scores:</b> {(good/(good + neutral + bad))*100}%<br/><br/></>
 
-    return (
-        <>
-            <Display value={"Stats 4 Nerds"} type={"header"}/>
-            <Display value={allText} type={"body"}/>
-            <Display value={average} type={"body"}/>
-            <Display value={positivePercent} type={"body"}/>
-        </>
-    )
-
-
-
-
-}
+    if ((good + neutral + bad == 0)) {
+        return (
+            <>
+                <Display value={"Stats 4 Nerds"} type={"header"}/>
+                🚫 No Data Is Currently Available...
+            </>
+        )
+    } else {
+        return (
+            <>
+                <Display value={"Stats 4 Nerds"} type={"header"}/>
+                <Display value={allText} type={"body"}/>
+                <Display value={average} type={"body"}/>
+                <Display value={positivePercent} type={"body"}/>
+            </>
+        )
+    };
+   
+};
 
 const App = () => {
 
