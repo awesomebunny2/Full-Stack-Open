@@ -25,6 +25,10 @@ const Button = props => {
 
 const Stats = ({ good, neutral, bad }) => {
 
+    const goodText = <><b>Better than Captian D's on a Friday Afternoon:</b> {good}<br/><br/></>;
+    const neutralText = <><b>I only eat for nutrition, not for taste:</b> {neutral}<br/><br/></>;
+    const badText = <><b>BAARRRFFFF</b> <i>cough</i> <b>BLEEEHH</b> <i>wheeze</i> <b>UUHHHGGGH</b> <i>i'm dying</i><b>:</b> {bad}<br/><br/></>;
+
     const allText = <><b>Total Votes:</b> {good + neutral + bad}<br/><br/></>
     const average = <><b>Average:</b> {(good + -Math.abs(bad))/(good + neutral + bad)}<br/><br/></>
     const positivePercent = <><b>% of Positive Scores:</b> {(good/(good + neutral + bad))*100}%<br/><br/></>
@@ -32,6 +36,8 @@ const Stats = ({ good, neutral, bad }) => {
     if ((good + neutral + bad == 0)) {
         return (
             <>
+                <Display value={"Da Results are in..."} type={"header"}/>
+                🤷🏻‍♂️ There's No Data Yet...
                 <Display value={"Stats 4 Nerds"} type={"header"}/>
                 🚫 No Data Is Currently Available...
             </>
@@ -39,6 +45,10 @@ const Stats = ({ good, neutral, bad }) => {
     } else {
         return (
             <>
+                <Display value={"Da Results are in..."} type={"header"}/>
+                <Display value={goodText} type={"body"}/>
+                <Display value={neutralText} type={"body"}/>
+                <Display value={badText} type={"body"}/>
                 <Display value={"Stats 4 Nerds"} type={"header"}/>
                 <Display value={allText} type={"body"}/>
                 <Display value={average} type={"body"}/>
@@ -59,9 +69,7 @@ const App = () => {
         valueArr(value);
     };
 
-    const goodText = <><b>Better than Captian D's on a Friday Afternoon:</b> {good}<br/><br/></>;
-    const neutralText = <><b>I only eat for nutrition, not for taste:</b> {neutral}<br/><br/></>;
-    const badText = <><b>BAARRRFFFF</b> <i>cough</i> <b>BLEEEHH</b> <i>wheeze</i> <b>UUHHHGGGH</b> <i>i'm dying</i><b>:</b> {bad}<br/><br/></>;
+
 
 
 
@@ -73,10 +81,6 @@ const App = () => {
             <Button handleClick={() => setValue(setNeutral, neutral + 1)} text="it's sufficient 🥸" />
             <br/><br/>
             <Button handleClick={() => setValue(setBad, bad + 1)} text="BLEH, I JUST THREW UP IN MY MOUTH 🤢" />
-            <Display value={"Da Results are in..."} type={"header"}/>
-            <Display value={goodText} type={"body"}/>
-            <Display value={neutralText} type={"body"}/>
-            <Display value={badText} type={"body"}/>
             <Stats good={good} neutral={neutral} bad={bad}/>
         </div>
     )
