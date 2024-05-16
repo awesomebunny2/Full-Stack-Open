@@ -11,7 +11,14 @@ const Display = props => {
         )
     } else {
         return (
-            <div>{props.value}</div>
+            <>
+                <tbody>
+                    <tr>
+                        <td>{props.text}</td>
+                        <td>{props.value}</td>
+                    </tr>
+                </tbody>
+            </>
         )
     };
 
@@ -25,13 +32,17 @@ const Button = props => {
 
 const Stats = ({ good, neutral, bad }) => {
 
-    const goodText = <><b>Better than Captian D's on a Friday Afternoon:</b> {good}<br/><br/></>;
-    const neutralText = <><b>I only eat for nutrition, not for taste:</b> {neutral}<br/><br/></>;
-    const badText = <><b>BAARRRFFFF</b> <i>cough</i> <b>BLEEEHH</b> <i>wheeze</i> <b>UUHHHGGGH</b> <i>i'm dying</i><b>:</b> {bad}<br/><br/></>;
+    const goodText = <><b>Better than Captian D's on a Friday Afternoon:</b></>;
+    const neutralText = <><b>I only eat for nutrition, not for taste:</b></>;
+    const badText = <><b>BAARRRFFFF</b> <i>cough</i> <b>BLEEEHH</b> <i>wheeze</i> <b>UUHHHGGGH</b> <i>i'm dying</i><b>:</b></>;
 
-    const allText = <><b>Total Votes:</b> {good + neutral + bad}<br/><br/></>
-    const average = <><b>Average:</b> {(good + -Math.abs(bad))/(good + neutral + bad)}<br/><br/></>
-    const positivePercent = <><b>% of Positive Scores:</b> {(good/(good + neutral + bad))*100}%<br/><br/></>
+    const allText = <><b>Total Votes:</b></>
+    const averageText = <><b>Average:</b></>
+    const positivePercent = <><b>% of Positive Scores:</b></>
+
+    const all = <>{good + neutral + bad}</>
+    const average = <>{(good + -Math.abs(bad))/(good + neutral + bad)}</>
+    const percent = <>{(good/(good + neutral + bad))*100}%</>
 
     if ((good + neutral + bad == 0)) {
         return (
@@ -46,13 +57,18 @@ const Stats = ({ good, neutral, bad }) => {
         return (
             <>
                 <Display value={"Da Results are in..."} type={"header"}/>
-                <Display value={goodText} type={"body"}/>
-                <Display value={neutralText} type={"body"}/>
-                <Display value={badText} type={"body"}/>
+                <table>
+                    <Display text={goodText} value={good} type={"body"}/>
+                    <Display text={neutralText} value={neutral} type={"body"}/>
+                    <Display text={badText} value={bad} type={"body"}/>
+                </table>
+               
                 <Display value={"Stats 4 Nerds"} type={"header"}/>
-                <Display value={allText} type={"body"}/>
-                <Display value={average} type={"body"}/>
-                <Display value={positivePercent} type={"body"}/>
+                <table>
+                    <Display text={allText} value={all} type={"body"}/>
+                    <Display text={averageText} value={average} type={"body"}/>
+                    <Display text={positivePercent} value={percent} type={"body"}/>
+                </table>
             </>
         )
     };
