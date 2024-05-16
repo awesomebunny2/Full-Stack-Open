@@ -39,7 +39,7 @@ const App = () => {
 
     const allText = <><b>Total Votes:</b> {good + neutral + bad}<br/><br/></>
     const average = <><b>Average:</b> {(good + -Math.abs(bad))/(good + neutral + bad)}<br/><br/></>
-    const positivePercent = <><b>% of Positive Scores:</b> {(good/(good + neutral + bad))*100}<br/><br/></>
+    const positivePercent = <><b>% of Positive Scores:</b> {(good/(good + neutral + bad))*100}%<br/><br/></>
 
     return (
         <div>
