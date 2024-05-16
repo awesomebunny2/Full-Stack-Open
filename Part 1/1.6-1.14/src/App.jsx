@@ -30,13 +30,16 @@ const App = () => {
     const [bad, setBad] = useState(0);
 
     const setValue = (valueArr, value) => {
-        console.log(valueArr, value);
         valueArr(value);
     };
 
     const goodText = <><b>Better than Captian D's on a Friday Afternoon:</b> {good}<br/><br/></>;
     const neutralText = <><b>I only eat for nutrition, not for taste:</b> {neutral}<br/><br/></>;
     const badText = <><b>BAARRRFFFF</b> <i>cough</i> <b>BLEEEHH</b> <i>wheeze</i> <b>UUHHHGGGH</b> <i>i'm dying</i><b>:</b> {bad}<br/><br/></>;
+
+    const allText = <><b>Total Votes:</b> {good + neutral + bad}<br/><br/></>
+    const average = <><b>Average:</b> {(good + -Math.abs(bad))/(good + neutral + bad)}<br/><br/></>
+    const positivePercent = <><b>% of Positive Scores:</b> {(good/(good + neutral + bad))*100}<br/><br/></>
 
     return (
         <div>
@@ -50,6 +53,10 @@ const App = () => {
             <Display value={goodText} type={"body"}/>
             <Display value={neutralText} type={"body"}/>
             <Display value={badText} type={"body"}/>
+            <Display value={"Stats 4 Nerds"} type={"header"}/>
+            <Display value={allText} type={"body"}/>
+            <Display value={average} type={"body"}/>
+            <Display value={positivePercent} type={"body"}/>
         </div>
     )
 };
