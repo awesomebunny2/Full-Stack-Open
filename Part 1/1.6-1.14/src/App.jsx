@@ -23,6 +23,26 @@ const Button = props => {
     )
 };
 
+const Stats = ({ good, neutral, bad }) => {
+
+    const allText = <><b>Total Votes:</b> {good + neutral + bad}<br/><br/></>
+    const average = <><b>Average:</b> {(good + -Math.abs(bad))/(good + neutral + bad)}<br/><br/></>
+    const positivePercent = <><b>% of Positive Scores:</b> {(good/(good + neutral + bad))*100}%<br/><br/></>
+
+    return (
+        <>
+            <Display value={"Stats 4 Nerds"} type={"header"}/>
+            <Display value={allText} type={"body"}/>
+            <Display value={average} type={"body"}/>
+            <Display value={positivePercent} type={"body"}/>
+        </>
+    )
+
+
+
+
+}
+
 const App = () => {
 
     const [good, setGood] = useState(0);
@@ -37,9 +57,7 @@ const App = () => {
     const neutralText = <><b>I only eat for nutrition, not for taste:</b> {neutral}<br/><br/></>;
     const badText = <><b>BAARRRFFFF</b> <i>cough</i> <b>BLEEEHH</b> <i>wheeze</i> <b>UUHHHGGGH</b> <i>i'm dying</i><b>:</b> {bad}<br/><br/></>;
 
-    const allText = <><b>Total Votes:</b> {good + neutral + bad}<br/><br/></>
-    const average = <><b>Average:</b> {(good + -Math.abs(bad))/(good + neutral + bad)}<br/><br/></>
-    const positivePercent = <><b>% of Positive Scores:</b> {(good/(good + neutral + bad))*100}%<br/><br/></>
+
 
     return (
         <div>
@@ -53,10 +71,7 @@ const App = () => {
             <Display value={goodText} type={"body"}/>
             <Display value={neutralText} type={"body"}/>
             <Display value={badText} type={"body"}/>
-            <Display value={"Stats 4 Nerds"} type={"header"}/>
-            <Display value={allText} type={"body"}/>
-            <Display value={average} type={"body"}/>
-            <Display value={positivePercent} type={"body"}/>
+            <Stats good={good} neutral={neutral} bad={bad}/>
         </div>
     )
 };
