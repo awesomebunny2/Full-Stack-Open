@@ -11,7 +11,10 @@ const Button = (props) => {
     )
 }
 
+
+
 const App = () => {
+
     const anecdotes = [
         'If it hurts, do it more often.',
         'Adding manpower to a late software project makes it later!',
@@ -21,21 +24,41 @@ const App = () => {
         'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
         'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
         'The only way to go fast, is to go well.'
-    ]
-   
+    ];
+
     function getRandomNumber(min, max) {
         return Math.floor(Math.random() * (max - min +1)) + min;
-    }
+    };
 
-    const [selected, setSelected] = useState(getRandomNumber(1, anecdotes.length));
+    let obj = {};
+
+    for (let i = 0; i < anecdotes.length; i++) {
+        obj[i] = 0;
+    };
 
 
+    const [selected, setSelected] = useState(getRandomNumber(0, anecdotes.length - 1));
+    const [points, setPoints] = useState(obj)
+
+
+    const updateVotes = (selected) => {
+
+        console.log(obj);
+
+        let newPoints = {...points}
+        newPoints[selected] = newPoints[selected] + 1
+        setPoints(newPoints)
+
+    };
 
   return (
     <div>
         {anecdotes[selected]}
         <br/>
-        <Button handleClick={() => setSelected(getRandomNumber(1, anecdotes.length))} text="another one"/>
+        This anecdote has {points[selected]} votes
+        <br/>
+        <Button handleClick={() => setSelected(getRandomNumber(0, anecdotes.length - 1))} text="another one"/>
+        <Button handleClick={() => updateVotes(selected)} text="vote for this one"/>
     </div>
   )
 }
