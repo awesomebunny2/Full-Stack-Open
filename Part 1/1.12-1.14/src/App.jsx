@@ -51,6 +51,27 @@ const App = () => {
 
     };
 
+    const getMaxProperty = (obj, statement) => {
+
+        let property = Object.keys(obj).reduce((max, key) => obj[max] > obj[key] ? max : key);
+
+        console.log(property);
+
+        return statement[property];
+
+    }
+
+    const getMax = (obj) => {
+
+        let arr = Object.values(obj);
+        let max = Math.max(...arr);
+
+        console.log(max);
+
+        return max;
+    
+    }
+
   return (
     <div>
         {anecdotes[selected]}
@@ -59,6 +80,12 @@ const App = () => {
         <br/>
         <Button handleClick={() => setSelected(getRandomNumber(0, anecdotes.length - 1))} text="another one"/>
         <Button handleClick={() => updateVotes(selected)} text="vote for this one"/>
+        <br/>
+        <h3>Anecdote with the most votes:</h3>
+        {getMaxProperty(points, anecdotes)}
+        <br/>
+        {getMax(points)}
+
     </div>
   )
 }
