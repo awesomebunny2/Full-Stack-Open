@@ -29,21 +29,21 @@ const Part = (props) => {
 }
 
 
-const Total = (props) => {
+const Total = ({course}) => {
 
   let sum = 0;
 
-  console.log(props);
+  console.log(course);
 
-  for (let i = 0; i < props.course.parts.length; i++) {
-    sum += props.course.parts[i].exercises;
+  for (let i = 0; i < course.parts.length; i++) {
+    sum += course.parts[i].exercises;
   };
 
   console.log(sum);
 
   return (
     <>
-      <p><i><b>Total Number of Exercises: </b></i>{sum}</p>
+      <p><b><u>Total Number of Exercises:<i> {sum}</i></u></b></p>
     </>
   );
 };
@@ -54,6 +54,7 @@ const Course = ({course}) => {
     <>
       <Header key={course.id} course={course.name} />
       <Content course={course} />
+      <Total course={course} />
     </>
   )
 }
