@@ -31,16 +31,6 @@ const Part = (props) => {
 
 const Total = ({course}) => {
 
-  // let sum = 0;
-
-  // console.log(course);
-
-  // for (let i = 0; i < course.parts.length; i++) {
-  //   sum += course.parts[i].exercises;
-  // };
-
-  // console.log(sum);
-
   const sum = course.parts.reduce((accumulator, currentValue) => accumulator + currentValue.exercises, 0);
 
   console.log(sum);
@@ -60,36 +50,61 @@ const Course = ({course}) => {
       <Header key={course.id} course={course.name} />
       <Content course={course} />
       <Total course={course} />
+      <br />
     </>
   )
 }
 
 const App = () => {
 
-  const course = {
-    id: 1,
-    name: 'Half Stack application development',
-    parts: [
-      {
-        name: 'Fundamentals of React',
-        exercises: 10,
-        id: 1
-      },
-      {
-        name: 'Using props to pass data',
-        exercises: 7,
-        id: 2
-      },
-      {
-        name: 'State of a component',
-        exercises: 14,
-        id: 3
-      }
-    ]
-  };
+  const course = [
+    {
+      id: 1,
+      name: 'Half Stack application development',
+      parts: [
+        {
+          name: 'Fundamentals of React',
+          exercises: 10,
+          id: 1
+        },
+        {
+          name: 'Using props to pass data',
+          exercises: 7,
+          id: 2
+        },
+        {
+          name: 'State of a component',
+          exercises: 14,
+          id: 3
+        }
+      ]
+    },
+    {
+      name: 'Node.js',
+      id: 2,
+      parts: [
+        {
+          name: 'Routing',
+          exercises: 3,
+          id: 1
+        },
+        {
+          name: 'Middlewares',
+          exercises: 7,
+          id: 2
+        }
+      ]
+    }
+  ];
 
-
-  return <Course key={course.id} course={course} />
+  // return <Course key={course.id} course={course} />
+  return (
+    <>
+      {course.map(section =>
+        <Course key={section.id} course={section} />
+      )}
+    </>
+  );
 
   // return (
   //   <>
