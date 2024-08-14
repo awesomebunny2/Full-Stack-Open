@@ -31,15 +31,20 @@ const Part = (props) => {
 
 const Total = ({course}) => {
 
-  let sum = 0;
+  // let sum = 0;
 
-  console.log(course);
+  // console.log(course);
 
-  for (let i = 0; i < course.parts.length; i++) {
-    sum += course.parts[i].exercises;
-  };
+  // for (let i = 0; i < course.parts.length; i++) {
+  //   sum += course.parts[i].exercises;
+  // };
+
+  // console.log(sum);
+
+  const sum = course.parts.reduce((accumulator, currentValue) => accumulator + currentValue.exercises, 0);
 
   console.log(sum);
+
 
   return (
     <>
