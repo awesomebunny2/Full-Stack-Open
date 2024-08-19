@@ -1,12 +1,8 @@
 import { useState } from 'react'
 import './App.css'
-import Entry from "./components/Entries"
+import ShowEntry from "./components/Entries"
 
 const App = ({phoneBook}) => {
-	// const [persons, setPersons] = useState([
-	// 	{ name: 'Arto Hellas' }
-	// ]);
-
 
 	const [phoneNumbers, setEntry] = useState(phoneBook);
 
@@ -71,7 +67,7 @@ const App = ({phoneBook}) => {
 	};
 
 
-	const showThese = phoneNumbers.filter(item => item.name.toLowerCase().includes(filter.toLowerCase()));
+	const showThese = phoneNumbers.filter(item => item.name.toLowerCase().includes(filter.toLowerCase()) || item.number.toLowerCase().includes(filter.toLowerCase()));
 
 
 
@@ -98,7 +94,7 @@ const App = ({phoneBook}) => {
 			</>
 
 			{showThese.map(phoneNumber => 
-				<Entry key={phoneNumber.id} entry={phoneNumber}/>
+				<ShowEntry key={phoneNumber.id} entry={phoneNumber}/>
 			)}
 
 			<br/>
