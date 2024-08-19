@@ -20,9 +20,17 @@ const App = ({phoneBook}) => {
 			id: String(phoneNumbers.length + 1)
 		};
 
-		setName(phoneNumbers.concat(newEntry));
-		setNewName("");
+		const found = phoneNumbers.find((entry) => entry.name === newName);
 
+		console.log(found);
+
+		if (found) {
+			alert(`${newName} is already added to the phonebook`);
+		} else {
+			setName(phoneNumbers.concat(newEntry));
+		}
+
+		setNewName("");
 
 	};
 
