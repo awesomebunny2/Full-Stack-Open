@@ -14,6 +14,8 @@ const App = ({phoneBook}) => {
 
 	const [newNumber, setNewNumber] = useState('');
 
+	const [filter, setFilter] = useState("");
+
 	const addNumber = (event) => {
 		event.preventDefault();
 		const newEntry = {
@@ -63,8 +65,15 @@ const App = ({phoneBook}) => {
 			setNewName(event.target.value);
 		} else if (event.currentTarget.id === "number-input") {
 			setNewNumber(event.target.value);
-		};
-	}
+		} else if (event.currentTarget.id === "filter") {
+			setFilter(event.target.value);
+		}
+	};
+
+
+	const showThese = phoneNumbers.filter(item => item.name.toLowerCase().includes(filter.toLowerCase()));
+
+
 
 	return (
 		<div>
@@ -84,7 +93,11 @@ const App = ({phoneBook}) => {
 
 			<h2>Numbers</h2>
 
-			{phoneNumbers.map(phoneNumber => 
+			<>
+				Filter: <input id="filter" onChange={handleInputUpdate}/>
+			</>
+
+			{showThese.map(phoneNumber => 
 				<Entry key={phoneNumber.id} entry={phoneNumber}/>
 			)}
 
