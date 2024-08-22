@@ -1,17 +1,25 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
+import axios from "axios"
 import AddEntry from "./components/AddEntries"
 import ViewEntries from './components/viewEntries'
 
-const App = ({phoneBook}) => {
+const App = () => {
 
-	const [phoneNumbers, setEntry] = useState(phoneBook);
+	const [phoneNumbers, setEntry] = useState([]);
 
 	const [newName, setNewName] = useState('');
 
 	const [newNumber, setNewNumber] = useState('');
 
 	const [filter, setFilter] = useState("");
+
+	//useEffect only runs after the App is rendered, and the [] at the end tells it to only run the first time the app is rendered, not any other times the app component is triggered
+	useEffect(() => {
+		axios.get("http://localhost:3001/phoneBook").then(response => {
+			setEntry(response.data);
+		});
+	}, []);
 
 	return (
 		<div>
