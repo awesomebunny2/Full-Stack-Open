@@ -1,5 +1,6 @@
 // const AddEntry = (props) => {
 import handleInputUpdate from "../handleUpdate";
+import phoneBookService from "../services/phoneBook";
 
 const AddEntry = ({ name, number, setName, setNumber, phoneNumbers, setEntry }) => {
 
@@ -9,21 +10,27 @@ const AddEntry = ({ name, number, setName, setNumber, phoneNumbers, setEntry }) 
             name: name,
             number: String(number),
             favorite: Math.random() < 0.5,
-            id: String(phoneNumbers.length + 1)
         };
     
         let nameExisting = findExisting("name", name, newEntry);
         let numberExisting = findExisting("number", number, newEntry);
     
-    
         if (!nameExisting && !numberExisting) {
-            setEntry(phoneNumbers.concat(newEntry));
-    
-            setName("");
-            setNumber("");
-    
-            document.getElementById("name-input").value = "";
-            document.getElementById("number-input").value = "";
+
+            phoneBookService.create(newEntry).then(returnedEntry => {
+                console.log(returnedEntry);
+                setEntry(phoneNumbers.concat(returnedEntry));
+
+                setName("");
+                setNumber("");
+        
+                document.getElementById("name-input").value = "";
+                document.getElementById("number-input").value = "";
+
+            }).catch(error => {
+                alert(error);
+            });
+
         };
 
 
