@@ -2,7 +2,7 @@
 import handleInputUpdate from "../handleUpdate";
 import phoneBookService from "../services/phoneBook";
 
-const AddEntry = ({ name, number, setName, setNumber, phoneNumbers, setEntry }) => {
+const AddEntry = ({ name, number, setName, setNumber, phoneNumbers, setPhoneNumbers }) => {
 
     const addEntry = (event) => {
         event.preventDefault();
@@ -19,7 +19,7 @@ const AddEntry = ({ name, number, setName, setNumber, phoneNumbers, setEntry }) 
 
             phoneBookService.create(newEntry).then(returnedEntry => {
                 console.log(returnedEntry);
-                setEntry(phoneNumbers.concat(returnedEntry));
+                setPhoneNumbers(phoneNumbers.concat(returnedEntry));
 
                 setName("");
                 setNumber("");

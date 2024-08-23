@@ -23,24 +23,6 @@
       "name": "Jason Funderburker",
       "number": "(919) 747-2179",
       "favorite": false
-    },
-    {
-      "id": "b09d",
-      "name": "Mark the Space Animal",
-      "number": "(191) 747-1999",
-      "favorite": false
-    },
-    {
-      "id": "c933",
-      "name": "A new foe approaches!",
-      "number": "19998999",
-      "favorite": false
-    },
-    {
-      "id": "51b2",
-      "name": "cheese",
-      "number": "66966696",
-      "favorite": false
     }
   ]
 }
