@@ -3,7 +3,7 @@ import handleInputUpdate from "../handleUpdate";
 import phoneBookService from "../services/phoneBook"
 
 
-const ViewEntries = ({ phoneNumbers, setPhoneNumbers, name, setName, number, setNumber, filter, setFilter }) => {
+const ViewEntries = ({ phoneNumbers, setPhoneNumbers, name, setName, number, setNumber, filter, setFilter, setMessage }) => {
 
     // console.log("Phone Numbers:", phoneNumbers)
 	const showThese = phoneNumbers.filter(item => 
@@ -22,6 +22,12 @@ const ViewEntries = ({ phoneNumbers, setPhoneNumbers, name, setName, number, set
                 setPhoneNumbers(phoneNumbers.filter(entry => entry.id !== id));
 			});
 			console.log(`${entry.name}: ${entry.number} deleted.`);
+
+            setMessage(`${entry.name}: ${entry.number} was deleted from the Phonebook.`);
+
+            setTimeout(() => {
+                setMessage(null);
+            }, 5000);
 		};
 
 	};

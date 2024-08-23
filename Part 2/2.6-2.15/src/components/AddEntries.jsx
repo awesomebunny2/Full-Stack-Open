@@ -2,7 +2,7 @@
 import handleInputUpdate from "../handleUpdate";
 import phoneBookService from "../services/phoneBook";
 
-const AddEntry = ({ name, number, setName, setNumber, phoneNumbers, setPhoneNumbers }) => {
+const AddEntry = ({ name, number, setName, setNumber, phoneNumbers, setPhoneNumbers, setMessage }) => {
 
     const addEntry = (event) => {
         event.preventDefault();
@@ -27,6 +27,12 @@ const AddEntry = ({ name, number, setName, setNumber, phoneNumbers, setPhoneNumb
                 document.getElementById("name-input").value = "";
                 document.getElementById("number-input").value = "";
 
+                setMessage(`${returnedEntry.name}: ${returnedEntry.number} was added to the Phonebook`);
+
+                setTimeout(() => {
+                    setMessage(null);
+                }, 5000);
+
             }).catch(error => {
                 alert(error);
             });
@@ -46,7 +52,14 @@ const AddEntry = ({ name, number, setName, setNumber, phoneNumbers, setPhoneNumb
                 phoneBookService.update(originalEntry.id, newEntry).then(returnedEntry => {
                     console.log(returnedEntry);
                     setPhoneNumbers(phoneNumbers.map(e => e.id !== originalEntry.id ? e : returnedEntry));
+
                     console.log(`${name}'s phone number was updated from ${originalEntry.number} to ${newEntry.number}`);
+                    setMessage(`${name}'s phone number was updated from ${originalEntry.number} to ${newEntry.number}`);
+
+                    setTimeout(() => {
+                        setMessage(null);
+                    }, 5000);
+
                     setName("");
                     setNumber("");
                     document.getElementById("name-input").value = "";
@@ -54,6 +67,8 @@ const AddEntry = ({ name, number, setName, setNumber, phoneNumbers, setPhoneNumb
                 }).catch(error => {
                     console.log(error);
                 });
+
+
             };
 
         } else {
