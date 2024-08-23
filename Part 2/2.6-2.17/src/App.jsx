@@ -20,6 +20,8 @@ const App = () => {
 
 	const [message, setMessage] = useState(null);
 
+	const [hasError, setHasError] = useState(false);
+
 	//useEffect only runs after the App is rendered, and the [] at the end tells it to only run the first time the app is rendered, not any other times the app component is triggered
 	useEffect(() => {
 		phoneBookService.getAll().then(initialEntires => {
@@ -30,7 +32,7 @@ const App = () => {
 
 	return (
 		<div>
-			<Notification message={message}/>
+			<Notification message={message} hasError={hasError}/>
 			<h2>Phonebook</h2>
 
 			<AddEntry
@@ -41,6 +43,7 @@ const App = () => {
 				phoneNumbers={phoneNumbers}
 				setPhoneNumbers={setPhoneNumbers}
 				setMessage={setMessage}
+				setHasError={setHasError}
 			/>
 
 			<h2>Numbers</h2>

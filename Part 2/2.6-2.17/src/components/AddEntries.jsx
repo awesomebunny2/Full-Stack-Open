@@ -2,7 +2,7 @@
 import handleInputUpdate from "../handleUpdate";
 import phoneBookService from "../services/phoneBook";
 
-const AddEntry = ({ name, number, setName, setNumber, phoneNumbers, setPhoneNumbers, setMessage }) => {
+const AddEntry = ({ name, number, setName, setNumber, phoneNumbers, setPhoneNumbers, setMessage, setHasError }) => {
 
     const addEntry = (event) => {
         event.preventDefault();
@@ -58,6 +58,7 @@ const AddEntry = ({ name, number, setName, setNumber, phoneNumbers, setPhoneNumb
 
                     setTimeout(() => {
                         setMessage(null);
+
                     }, 5000);
 
                     setName("");
@@ -66,6 +67,19 @@ const AddEntry = ({ name, number, setName, setNumber, phoneNumbers, setPhoneNumb
                     document.getElementById("number-input").value = "";
                 }).catch(error => {
                     console.log(error);
+
+                    // document.getElementsByClassName("notification").classList.add("error");
+                    setHasError(true);
+
+                    setMessage(`${name}'s entry has already been removed from the Phonebook.`);
+                    setTimeout(() => {
+                        setMessage(null);
+
+                        setHasError(false);
+
+                        // document.getElementsByClassName("notification").classList.remove("error");
+
+                    }, 5000);
                 });
 
 
