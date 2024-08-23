@@ -15,7 +15,7 @@ const AddEntry = ({ name, number, setName, setNumber, phoneNumbers, setPhoneNumb
         let nameExisting = findExisting("name", name, newEntry);
         let numberExisting = findExisting("number", number, newEntry);
     
-        if (!nameExisting && !numberExisting) {
+        if (!nameExisting && !numberExisting) { //neither exist yet
 
             phoneBookService.create(newEntry).then(returnedEntry => {
                 console.log(returnedEntry);
@@ -31,6 +31,33 @@ const AddEntry = ({ name, number, setName, setNumber, phoneNumbers, setPhoneNumb
                 alert(error);
             });
 
+        } else if (!nameExisting && numberExisting) { //number already exists
+
+            alert(`${numberExisting} is already added to the phonebook`);
+
+        } else if (nameExisting && !numberExisting) { //name already exists
+
+            const originalEntry = phoneNumbers.find((entry) => entry.name === name);
+
+            if (window.confirm(`${nameExisting} is already added to the phonebook.\nWould you like to update the number for this record?\nOld Number: ${originalEntry.number}\nNew Number: ${newEntry.number}`)) {
+
+                console.log(originalEntry);
+
+                phoneBookService.update(originalEntry.id, newEntry).then(returnedEntry => {
+                    console.log(returnedEntry);
+                    setPhoneNumbers(phoneNumbers.map(e => e.id !== originalEntry.id ? e : returnedEntry));
+                    console.log(`${name}'s phone number was updated from ${originalEntry.number} to ${newEntry.number}`);
+                    setName("");
+                    setNumber("");
+                    document.getElementById("name-input").value = "";
+                    document.getElementById("number-input").value = "";
+                }).catch(error => {
+                    console.log(error);
+                });
+            };
+
+        } else {
+            alert(`${nameExisting}: ${numberExisting} is already added to the phonebook`);
         };
 
 
@@ -38,11 +65,11 @@ const AddEntry = ({ name, number, setName, setNumber, phoneNumbers, setPhoneNumb
 
             const foundName = phoneNumbers.find((entry) => entry[property] === value);
     
-            console.log(foundName);
+            // console.log(foundName);
     
             if (foundName) {
-                alert(`${value} is already added to the phonebook`);
-                return true;
+                // alert(`${value} is already added to the phonebook`);
+                return value;
             } else {
                 return false;
             };
@@ -51,7 +78,7 @@ const AddEntry = ({ name, number, setName, setNumber, phoneNumbers, setPhoneNumb
 
         
     
-    }
+    };
    
 
     return (

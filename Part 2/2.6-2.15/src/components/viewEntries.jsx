@@ -5,7 +5,7 @@ import phoneBookService from "../services/phoneBook"
 
 const ViewEntries = ({ phoneNumbers, setPhoneNumbers, name, setName, number, setNumber, filter, setFilter }) => {
 
-    console.log("Phone Numbers:", phoneNumbers)
+    // console.log("Phone Numbers:", phoneNumbers)
 	const showThese = phoneNumbers.filter(item => 
         item.name.toLowerCase().includes(filter.toLowerCase())
         || item.number.toLowerCase().includes(filter.toLowerCase())
