@@ -21,6 +21,7 @@ import CountryInfo from './components/CountryInfo';
 
 	const [countriesData, setCountriesData] = useState(null);
 	const [selectedCountry, setSelectedCountry] = useState(null);
+	const [currentWeather, setCurrentWeather] = useState(null);
 
 
 		// useEffect(() => {
@@ -28,6 +29,10 @@ import CountryInfo from './components/CountryInfo';
 		// 		setCountriesData(countryData);
 		// 	});
 		// }, []);
+
+		const infoStyle = {
+            textAlign: "left"
+        };
 
 
 	return (
@@ -40,8 +45,13 @@ import CountryInfo from './components/CountryInfo';
 				/>
 			</div>
 
-			<div className="half-section">
-				<CountryInfo selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry}/>
+			<div className="half-section" style={infoStyle}>
+				<CountryInfo 
+					selectedCountry={selectedCountry} 
+					setSelectedCountry={setSelectedCountry} 
+					currentWeather={currentWeather} 
+					setCurrentWeather={setCurrentWeather}
+				/>
 			</div>
 		</>
 
