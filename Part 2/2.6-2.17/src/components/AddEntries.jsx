@@ -34,7 +34,14 @@ const AddEntry = ({ name, number, setName, setNumber, phoneNumbers, setPhoneNumb
                 }, 5000);
 
             }).catch(error => {
-                alert(error);
+                // alert(error.response.data.error);
+                setHasError(true);
+                setMessage(error.response.data.error);
+                setTimeout(() => {
+                    setMessage(null);
+                    setHasError(false);
+                }, 5000);
+                console.log(error.response.data.error);
             });
 
         } else if (!nameExisting && numberExisting) { //number already exists
@@ -66,7 +73,7 @@ const AddEntry = ({ name, number, setName, setNumber, phoneNumbers, setPhoneNumb
                     document.getElementById("name-input").value = "";
                     document.getElementById("number-input").value = "";
                 }).catch(error => {
-                    console.log(error);
+                    console.log(error.response.data.error);
 
                     // document.getElementsByClassName("notification").classList.add("error");
                     setHasError(true);
