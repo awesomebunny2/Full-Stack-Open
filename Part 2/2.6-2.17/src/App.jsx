@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import './App.css'
-import axios from "axios"
+// import axios from "axios"
 import AddEntry from "./components/AddEntries"
 import ViewEntries from './components/viewEntries'
 import phoneBookService from "./services/phoneBook"

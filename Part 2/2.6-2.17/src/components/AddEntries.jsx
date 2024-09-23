@@ -2,6 +2,7 @@
 import handleInputUpdate from "../handleUpdate";
 import phoneBookService from "../services/phoneBook";
 
+// eslint-disable-next-line react/prop-types
 const AddEntry = ({ name, number, setName, setNumber, phoneNumbers, setPhoneNumbers, setMessage, setHasError }) => {
 
     const addEntry = (event) => {
@@ -19,6 +20,7 @@ const AddEntry = ({ name, number, setName, setNumber, phoneNumbers, setPhoneNumb
 
             phoneBookService.create(newEntry).then(returnedEntry => {
                 console.log(returnedEntry);
+                // eslint-disable-next-line react/prop-types
                 setPhoneNumbers(phoneNumbers.concat(returnedEntry));
 
                 setName("");
@@ -50,6 +52,7 @@ const AddEntry = ({ name, number, setName, setNumber, phoneNumbers, setPhoneNumb
 
         } else if (nameExisting && !numberExisting) { //name already exists
 
+            // eslint-disable-next-line react/prop-types
             const originalEntry = phoneNumbers.find((entry) => entry.name === name);
 
             if (window.confirm(`${nameExisting} is already added to the phonebook.\nWould you like to update the number for this record?\nOld Number: ${originalEntry.number}\nNew Number: ${newEntry.number}`)) {
@@ -58,6 +61,7 @@ const AddEntry = ({ name, number, setName, setNumber, phoneNumbers, setPhoneNumb
 
                 phoneBookService.update(originalEntry.id, newEntry).then(returnedEntry => {
                     console.log(returnedEntry);
+                    // eslint-disable-next-line react/prop-types
                     setPhoneNumbers(phoneNumbers.map(e => e.id !== originalEntry.id ? e : returnedEntry));
 
                     console.log(`${name}'s phone number was updated from ${originalEntry.number} to ${newEntry.number}`);
@@ -99,6 +103,7 @@ const AddEntry = ({ name, number, setName, setNumber, phoneNumbers, setPhoneNumb
 
         function findExisting(property, value) {
 
+            // eslint-disable-next-line react/prop-types
             const foundName = phoneNumbers.find((entry) => entry[property] === value);
     
             // console.log(foundName);
